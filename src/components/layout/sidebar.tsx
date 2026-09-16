@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import {
+  Activity,
   Inbox,
   LayoutGrid,
   ShoppingBag,
@@ -31,6 +32,11 @@ const navigation = [
     href: "/inbox",
     icon: Inbox,
     badge: 14,
+  },
+  {
+    label: "Activity",
+    href: "/activity",
+    icon: Activity,
   },
 ];
 
