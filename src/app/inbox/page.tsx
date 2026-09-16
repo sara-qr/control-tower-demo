@@ -205,9 +205,12 @@ export default function InboxPage() {
 
                 <div>
                   <div className="flex items-center gap-2">
-                    <p className="text-sm font-medium">
+                    <Link
+                      href={`/inbox/${email.id}`}
+                      className="text-sm font-medium transition hover:opacity-55"
+                    >
                       {email.subject}
-                    </p>
+                    </Link>
 
                     {email.priority === "High" && (
                       <span className="rounded-full bg-[#f3cfe0] px-2 py-1 text-[10px] uppercase tracking-[0.08em]">
@@ -256,7 +259,7 @@ export default function InboxPage() {
                   </div>
 
                   <Link
-                    href={`/orders/${email.orderId}`}
+                    href={`/inbox/${email.id}`}
                     className="flex h-9 w-9 items-center justify-center rounded-full border border-[#deded7] transition hover:bg-[#171717] hover:text-white"
                   >
                     <ArrowUpRight size={15} />
