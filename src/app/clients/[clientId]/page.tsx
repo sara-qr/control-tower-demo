@@ -13,6 +13,8 @@ import {
 
 import { AppShell } from "@/components/layout/app-shell";
 import { clients } from "@/data/clients";
+import { emails } from "@/data/emails";
+import { orders } from "@/data/orders";
 
 type ClientPageProps = {
   params: Promise<{
@@ -42,6 +44,8 @@ export default async function ClientPage({
   }
 
   const profit = client.sales - client.cost;
+  const recentOrders = orders.filter((order) => order.clientId === client.id);
+  const recentEmails = emails.filter((email) => email.clientId === client.id);
 
   return (
     <AppShell>
@@ -243,8 +247,8 @@ export default async function ClientPage({
             </div>
 
             <div className="mt-8">
-              {client.recentOrders.length > 0 ? (
-                client.recentOrders.map(
+              {recentOrders.length > 0 ? (
+                recentOrders.map(
                   (order, index) => (
                     <Link
                       key={order.id}
@@ -252,7 +256,7 @@ export default async function ClientPage({
                       className={[
                         "group grid grid-cols-[1.2fr_1fr_1fr_1fr_40px] items-center gap-5 py-5 transition hover:opacity-60",
                         index !==
-                        client.recentOrders.length - 1
+                        recentOrders.length - 1
                           ? "border-b border-[#e8e8e2]"
                           : "",
                       ].join(" ")}
@@ -268,7 +272,7 @@ export default async function ClientPage({
                       </div>
 
                       <span className="text-sm font-medium">
-                        {formatCurrency(order.amount)}
+                          {formatCurrency(order.amount)}
                       </span>
 
                       <span className="text-sm text-[#777770]">
@@ -312,26 +316,26 @@ export default async function ClientPage({
             </div>
 
             <div className="mt-8">
-              {client.emails.length > 0 ? (
-                client.emails.map(
+              {recentEmails.length > 0 ? (
+                recentEmails.map(
                   (email, index) => (
                     <div
-                      key={email.subject}
+                      key={email.id}
                       className={[
                         "flex items-center justify-between gap-8 py-5",
                         index !==
-                        client.emails.length - 1
+                        recentEmails.length - 1
                           ? "border-b border-black/10"
                           : "",
                       ].join(" ")}
                     >
                       <div>
-                        <p className="text-sm font-medium">
+                        <Link href={`/inbox/${email.id}`} className="text-sm font-medium transition hover:opacity-55">
                           {email.subject}
-                        </p>
+                        </Link>
 
                         <p className="mt-1 text-sm text-black/50">
-                          {email.date}
+                          {email.time}
                         </p>
                       </div>
 

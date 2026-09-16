@@ -118,7 +118,7 @@ export default function ClientsPage() {
 
             <div className="pb-2 text-right">
               <p className="text-[42px] font-medium tracking-[-0.055em]">
-                48
+                {clients.length}
               </p>
 
               <p className="text-sm text-[#777770]">

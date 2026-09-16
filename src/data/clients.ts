@@ -18,7 +18,7 @@ export const clients = [
       {
         id: "ORD-1048",
         amount: 2340,
-        status: "Shipped",
+        status: "Delayed",
         date: "14 Sep 2026",
       },
       {
@@ -26,12 +26,6 @@ export const clients = [
         amount: 1980,
         status: "Delivered",
         date: "11 Sep 2026",
-      },
-      {
-        id: "ORD-1027",
-        amount: 1420,
-        status: "Delivered",
-        date: "08 Sep 2026",
       },
     ],
     emails: [

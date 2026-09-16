@@ -10,9 +10,9 @@ export const attentionItems = [
   {
     id: "EMAIL-203",
     type: "Email",
-    client: "Hotel Mar Azul",
-    message: "26h unanswered",
-    time: "Yesterday",
+    client: "EcoRetail Canarias",
+    message: "Awaiting a response",
+    time: "Today",
     tone: "lavender",
   },
   {
@@ -52,7 +52,7 @@ export const recentActivity = [
     time: "09:31",
     source: "App",
     title: "Shipping status updated",
-    description: "ORD-1039 · Natura Home",
+    description: "ORD-1061 · Natura Home",
   },
   {
     id: 5,
@@ -66,13 +66,12 @@ export const recentActivity = [
 export const syncBatches = [
   {
     count: 3,
-    newEmails: 1,
     activities: [
       {
         id: 101,
         time: "10:02",
         source: "Email",
-        title: "New email from Clínica Verde",
+        title: "Email checked for Clínica Verde",
         description: "Solicitud factura septiembre",
       },
       {
@@ -93,14 +92,13 @@ export const syncBatches = [
   },
   {
     count: 2,
-    newEmails: 1,
     activities: [
       {
         id: 201,
         time: "10:18",
         source: "Email",
-        title: "New email from Natura Home",
-        description: "Consulta sobre fecha de entrega",
+        title: "Email checked for Natura Home",
+        description: "Confirmación fecha de entrega",
       },
       {
         id: 202,
@@ -113,35 +111,34 @@ export const syncBatches = [
   },
   {
     count: 4,
-    newEmails: 2,
     activities: [
       {
         id: 301,
         time: "10:31",
         source: "Email",
-        title: "New email from Urban Foods",
-        description: "Nuevo pedido solicitado",
+        title: "Email checked for Bazar Norte SL",
+        description: "Cambio de dirección de entrega",
       },
       {
         id: 302,
         time: "10:32",
         source: "Email",
-        title: "New email from Hotel Mar Azul",
-        description: "Confirmación de dirección",
+        title: "Email checked for EcoRetail Canarias",
+        description: "Re: Pedido ORD-1048 retrasado",
       },
       {
         id: 303,
         time: "10:33",
         source: "App",
-        title: "New order created",
-        description: "ORD-1068 · Urban Foods",
+        title: "Order record checked",
+        description: "ORD-1068 · Distribuciones Vega",
       },
       {
         id: 304,
         time: "10:34",
         source: "App",
         title: "Customer profile updated",
-        description: "Hotel Mar Azul · Address confirmed",
+        description: "EcoRetail Canarias · Address confirmed",
       },
     ],
   },

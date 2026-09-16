@@ -7,7 +7,6 @@ import {
   ArrowUpRight,
   PackageCheck,
   Search,
-  Truck,
   Clock3,
   AlertTriangle,
 } from "lucide-react";

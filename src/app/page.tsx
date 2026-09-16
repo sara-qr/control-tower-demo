@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 import {
   ArrowRight,
@@ -14,6 +15,9 @@ import {
 } from "lucide-react";
 
 import { AppShell } from "@/components/layout/app-shell";
+import { clients } from "@/data/clients";
+import { emails } from "@/data/emails";
+import { orders } from "@/data/orders";
 
 import {
   attentionItems,
@@ -24,7 +28,9 @@ import {
 export default function Home() {
   const [activities, setActivities] = useState(recentActivity);
   const [updates, setUpdates] = useState(23);
-  const [inboxCount, setInboxCount] = useState(14);
+  const totalSales = clients.reduce((sum, client) => sum + client.sales, 0);
+  const unanswered = emails.filter((email) => email.status === "Unanswered").length;
+  const delayed = orders.filter((order) => order.status === "Delayed").length;
 
   const [syncing, setSyncing] = useState(false);
   const [synced, setSynced] = useState(false);
@@ -41,12 +47,14 @@ export default function Home() {
       const batch = syncBatches[syncIndex % syncBatches.length];
 
       setActivities((current) => [
-        ...batch.activities,
+        ...batch.activities.map((activity) => ({
+          ...activity,
+          id: activity.id + syncIndex * 1000,
+        })),
         ...current,
       ]);
 
       setUpdates((current) => current + batch.count);
-      setInboxCount((current) => current + batch.newEmails);
 
       setSyncIndex((current) => current + 1);
       setLastSync("just now");
@@ -77,9 +85,9 @@ export default function Home() {
               </div>
             )}
 
-            <button className="flex h-11 w-11 items-center justify-center rounded-full border border-[#deded7] bg-white transition hover:scale-[1.04]">
+            <Link href="/clients" aria-label="Search clients" className="flex h-11 w-11 items-center justify-center rounded-full border border-[#deded7] bg-white transition hover:scale-[1.04]">
               <Search size={17} />
-            </button>
+            </Link>
 
             <button
               onClick={handleSync}
@@ -117,22 +125,22 @@ export default function Home() {
                 Sales
               </p>
 
-              <button className="flex h-10 w-10 items-center justify-center rounded-full border border-black/20 transition hover:bg-black hover:text-white">
+              <Link href="/analytics" aria-label="View analytics" className="flex h-10 w-10 items-center justify-center rounded-full border border-black/20 transition hover:bg-black hover:text-white">
                 <ArrowUpRight size={18} />
-              </button>
+              </Link>
             </div>
 
             <p className="mt-16 text-[64px] font-medium tracking-[-0.07em]">
-              €80.3K
+              {new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(totalSales)}
             </p>
 
             <div className="mt-8 flex items-end justify-between">
               <p className="text-sm text-black/60">
-                This month
+                Across demo CRM clients
               </p>
 
               <span className="rounded-full border border-black/15 px-3 py-1 text-xs">
-                +12.4%
+                Demo
               </span>
             </div>
           </article>
@@ -143,11 +151,11 @@ export default function Home() {
             </p>
 
             <p className="mt-16 text-[58px] font-medium tracking-[-0.07em]">
-              {inboxCount}
+              {emails.length}
             </p>
 
             <p className="mt-8 text-sm text-black/60">
-              6 need attention
+              {unanswered} need a response
             </p>
           </article>
 
@@ -157,11 +165,11 @@ export default function Home() {
             </p>
 
             <p className="mt-16 text-[58px] font-medium tracking-[-0.07em]">
-              53
+              {orders.length}
             </p>
 
             <p className="mt-8 text-sm text-black/60">
-              4 delayed
+              {delayed} delayed
             </p>
           </article>
         </section>
@@ -179,16 +187,17 @@ export default function Home() {
               </h2>
             </div>
 
-            <button className="flex items-center gap-2 text-sm transition hover:opacity-60">
+            <Link href="/activity" className="flex items-center gap-2 text-sm transition hover:opacity-60">
               View all
               <ArrowRight size={16} />
-            </button>
+            </Link>
           </div>
 
           <div className="mt-7 overflow-hidden rounded-[30px] border border-[#deded7] bg-white">
             {attentionItems.map((item, index) => (
-              <button
+              <Link
                 key={item.id}
+                href={item.type === "Email" ? `/inbox/${item.id}` : `/orders/${item.id}`}
                 className={[
                   "group flex w-full items-center gap-6 px-7 py-6 text-left transition hover:bg-[#fafaf7]",
                   index !== attentionItems.length - 1
@@ -236,7 +245,7 @@ export default function Home() {
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#deded7] transition group-hover:bg-[#171717] group-hover:text-white">
                   <ArrowUpRight size={16} />
                 </div>
-              </button>
+              </Link>
             ))}
           </div>
         </section>
@@ -256,10 +265,10 @@ export default function Home() {
                   </h2>
                 </div>
 
-                <button className="flex items-center gap-2 text-sm transition hover:opacity-60">
+                <Link href="/activity" className="flex items-center gap-2 text-sm transition hover:opacity-60">
                   View all
                   <ArrowRight size={16} />
-                </button>
+                </Link>
               </div>
 
               <div className="mt-10">
@@ -387,7 +396,7 @@ export default function Home() {
                 </div>
 
                 <p className="mt-6 text-[30px] font-medium tracking-[-0.05em]">
-                  {updates} updates
+                  {updates} demo updates
                 </p>
 
                 <p className="mt-1 text-sm text-white/50">

@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { emails } from "@/data/emails";
 
 import {
   Activity,
+  ChartNoAxesCombined,
   Inbox,
   LayoutGrid,
   ShoppingBag,
@@ -31,12 +33,17 @@ const navigation = [
     label: "Inbox",
     href: "/inbox",
     icon: Inbox,
-    badge: 14,
+    badge: emails.length,
   },
   {
     label: "Activity",
     href: "/activity",
     icon: Activity,
+  },
+  {
+    label: "Analytics",
+    href: "/analytics",
+    icon: ChartNoAxesCombined,
   },
 ];
 

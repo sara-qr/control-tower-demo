@@ -12,6 +12,7 @@ import {
 import { AppShell } from "@/components/layout/app-shell";
 import { clients } from "@/data/clients";
 import { orders } from "@/data/orders";
+import { emails } from "@/data/emails";
 
 type OrderPageProps = {
   params: Promise<{
@@ -45,6 +46,7 @@ export default async function OrderPage({
   );
 
   const margin = order.amount - order.cost;
+  const linkedEmails = emails.filter((email) => email.orderId === order.id);
 
   return (
     <AppShell>
@@ -286,49 +288,22 @@ export default async function OrderPage({
             </h2>
 
             <div className="mt-8 space-y-3">
-              <div className="rounded-[22px] bg-white/55 p-5">
-                <div className="flex items-start justify-between gap-5">
-                  <div className="flex gap-3">
-                    <Mail size={17} />
-
-                    <div>
-                      <p className="text-sm font-medium">
-                        Re: {order.id}
-                      </p>
-
-                      <p className="mt-1 text-sm text-black/50">
-                        Client requested an order update
-                      </p>
+              {linkedEmails.length > 0 ? linkedEmails.map((email) => (
+                <Link key={email.id} href={`/inbox/${email.id}`} className="block rounded-[22px] bg-white/55 p-5 transition hover:bg-white/75">
+                  <div className="flex items-start justify-between gap-5">
+                    <div className="flex gap-3">
+                      <Mail size={17} />
+                      <div>
+                        <p className="text-sm font-medium">{email.subject}</p>
+                        <p className="mt-1 text-sm text-black/50">{email.preview}</p>
+                      </div>
                     </div>
+                    <span className="shrink-0 text-xs text-black/45">{email.time}</span>
                   </div>
-
-                  <span className="text-xs text-black/45">
-                    Today · 09:14
-                  </span>
-                </div>
-              </div>
-
-              <div className="rounded-[22px] bg-white/55 p-5">
-                <div className="flex items-start justify-between gap-5">
-                  <div className="flex gap-3">
-                    <Mail size={17} />
-
-                    <div>
-                      <p className="text-sm font-medium">
-                        Shipping confirmation
-                      </p>
-
-                      <p className="mt-1 text-sm text-black/50">
-                        Automatic notification generated
-                      </p>
-                    </div>
-                  </div>
-
-                  <span className="text-xs text-black/45">
-                    Yesterday
-                  </span>
-                </div>
-              </div>
+                </Link>
+              )) : (
+                <p className="text-sm text-black/50">No linked emails.</p>
+              )}
             </div>
           </article>
 
