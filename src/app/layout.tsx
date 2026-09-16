@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Control Tower",
-  description: "Email, CRM and operations control tower",
+  description: "Email, CRM and operations in one connected workspace.",
 };
 
 export default function RootLayout({

@@ -4,12 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { emails } from "@/data/emails";
+import { Brand } from "@/components/brand";
+import { demoSessionCookie } from "@/lib/demo-session";
 
 import {
   Activity,
   ChartNoAxesCombined,
   Inbox,
   LayoutGrid,
+  LogOut,
   Menu,
   ShoppingBag,
   Users,
@@ -54,10 +57,15 @@ export function Sidebar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  function logOut() {
+    document.cookie = `${demoSessionCookie}=; path=/; max-age=0; samesite=lax`;
+    window.location.replace("/login");
+  }
+
   return (
     <>
     <header className="flex h-16 items-center justify-between border-b border-[#deded7] bg-[#f5f5f0] px-5 lg:hidden">
-      <Link href="/" className="text-lg font-medium tracking-[-0.05em]">Control Tower</Link>
+      <Link href="/"><Brand compact /></Link>
       <button type="button" aria-label="Open navigation" aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen(true)} className="flex h-11 w-11 items-center justify-center rounded-full border border-[#deded7]">
         <Menu size={20} />
       </button>
@@ -68,7 +76,7 @@ export function Sidebar() {
         <button type="button" aria-label="Close navigation" onClick={() => setMenuOpen(false)} className="absolute inset-0 w-full bg-black/30" />
         <div id="mobile-navigation" className="relative flex h-full w-[min(320px,85vw)] flex-col bg-[#f5f5f0] px-6 py-6 shadow-xl">
           <div className="flex items-center justify-between">
-            <Link href="/" onClick={() => setMenuOpen(false)} className="text-[22px] font-medium tracking-[-0.05em]">Control Tower</Link>
+            <Link href="/" onClick={() => setMenuOpen(false)}><Brand compact /></Link>
             <button type="button" aria-label="Close navigation" onClick={() => setMenuOpen(false)} className="flex h-11 w-11 items-center justify-center rounded-full border border-[#deded7]"><X size={20} /></button>
           </div>
           <nav className="mt-10 space-y-1" aria-label="Mobile navigation">
@@ -83,20 +91,17 @@ export function Sidebar() {
               );
             })}
           </nav>
-          <div className="mt-auto flex items-center gap-2 text-xs text-[#777770]"><span className="h-2 w-2 rounded-full bg-[#b9e879]" />Systems connected</div>
+          <div className="mt-auto">
+            <button type="button" onClick={logOut} className="flex min-h-12 w-full items-center gap-3 rounded-full px-4 text-sm text-[#686864] transition hover:bg-white hover:text-[#171717]"><LogOut size={16} />Log out</button>
+            <div className="mt-6 flex items-center gap-2 text-xs text-[#777770]"><span className="h-2 w-2 rounded-full bg-[#b9e879]" />Systems connected</div>
+          </div>
         </div>
       </div>
     )}
 
     <aside className="sticky top-0 hidden h-screen w-[190px] shrink-0 flex-col border-r border-[#deded7] bg-[#f5f5f0] px-6 py-8 lg:flex">
       <Link href="/">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.25em]">
-          Control
-        </p>
-
-        <p className="mt-1 text-[22px] font-medium tracking-[-0.05em]">
-          Tower
-        </p>
+        <Brand />
       </Link>
 
       <nav className="mt-16 space-y-1">
@@ -142,6 +147,7 @@ export function Sidebar() {
       </nav>
 
       <div className="mt-auto">
+        <button type="button" onClick={logOut} className="mb-6 flex w-full items-center gap-3 rounded-full px-4 py-3 text-sm text-[#686864] transition hover:bg-white hover:text-[#171717]"><LogOut size={16} />Log out</button>
         <div className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-[#b9e879]" />
 
