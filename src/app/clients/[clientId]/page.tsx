@@ -234,21 +234,25 @@ export default async function ClientPage({
                 </h2>
               </div>
 
-              <button className="flex h-10 w-10 items-center justify-center rounded-full border border-[#deded7]">
+              <Link
+                href="/orders"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-[#deded7] transition hover:bg-[#171717] hover:text-white"
+              >
                 <ArrowUpRight size={16} />
-              </button>
+              </Link>
             </div>
 
             <div className="mt-8">
               {client.recentOrders.length > 0 ? (
                 client.recentOrders.map(
                   (order, index) => (
-                    <div
+                    <Link
                       key={order.id}
+                      href={`/orders/${order.id}`}
                       className={[
-                        "grid grid-cols-[1.2fr_1fr_1fr_1fr] items-center gap-5 py-5",
+                        "group grid grid-cols-[1.2fr_1fr_1fr_1fr_40px] items-center gap-5 py-5 transition hover:opacity-60",
                         index !==
-                          client.recentOrders.length - 1
+                        client.recentOrders.length - 1
                           ? "border-b border-[#e8e8e2]"
                           : "",
                       ].join(" ")}
@@ -271,10 +275,14 @@ export default async function ClientPage({
                         {order.date}
                       </span>
 
-                      <span className="justify-self-end rounded-full bg-[#f5f5f0] px-3 py-1.5 text-xs">
+                      <span className="justify-self-start rounded-full bg-[#f5f5f0] px-3 py-1.5 text-xs">
                         {order.status}
                       </span>
-                    </div>
+
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#deded7] transition group-hover:bg-[#171717] group-hover:text-white">
+                        <ArrowUpRight size={15} />
+                      </span>
+                    </Link>
                   )
                 )
               ) : (
@@ -312,7 +320,7 @@ export default async function ClientPage({
                       className={[
                         "flex items-center justify-between gap-8 py-5",
                         index !==
-                          client.emails.length - 1
+                        client.emails.length - 1
                           ? "border-b border-black/10"
                           : "",
                       ].join(" ")}
