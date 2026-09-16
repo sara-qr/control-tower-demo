@@ -13,6 +13,11 @@ import { AppShell } from "@/components/layout/app-shell";
 import { clients } from "@/data/clients";
 import { emails } from "@/data/emails";
 import { orders } from "@/data/orders";
+import {
+  EmailActions,
+  EmailInteractionProvider,
+  EmailStatusBadge,
+} from "./email-interactions";
 
 type EmailPageProps = {
   params: Promise<{
@@ -52,6 +57,7 @@ export default async function EmailPage({
 
   return (
     <AppShell>
+      <EmailInteractionProvider initialStatus={email.status}>
       <div className="px-10 py-8 lg:px-14">
         {/* Header */}
         <header className="flex items-center justify-between">
@@ -63,18 +69,7 @@ export default async function EmailPage({
             Inbox
           </Link>
 
-          <span
-            className={[
-              "rounded-full px-4 py-2 text-sm",
-              email.status === "Unanswered"
-                ? "bg-[#f3cfe0]"
-                : email.status === "Pending"
-                  ? "bg-[#f3e5bd]"
-                  : "bg-[#d8f2a6]",
-            ].join(" ")}
-          >
-            {email.status}
-          </span>
+          <EmailStatusBadge />
         </header>
 
         {/* Hero */}
@@ -135,15 +130,7 @@ export default async function EmailPage({
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3 border-t border-[#e8e8e2] pt-6">
-              <button className="rounded-full bg-[#171717] px-5 py-3 text-sm text-white">
-                Reply
-              </button>
-
-              <button className="rounded-full border border-[#deded7] px-5 py-3 text-sm">
-                Mark as resolved
-              </button>
-            </div>
+            <EmailActions />
           </article>
 
           {/* Context */}
@@ -347,6 +334,7 @@ export default async function EmailPage({
           </article>
         </section>
       </div>
+      </EmailInteractionProvider>
     </AppShell>
   );
 }
