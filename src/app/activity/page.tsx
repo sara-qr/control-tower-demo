@@ -53,14 +53,14 @@ export default function ActivityPage() {
 
   return (
     <AppShell>
-      <div className="px-10 py-8 lg:px-14">
+      <div className="px-5 py-6 sm:px-8 lg:px-14 lg:py-8">
         {/* Header */}
-        <header className="flex items-center justify-between gap-6">
+        <header className="flex flex-wrap items-center justify-between gap-4 lg:gap-6">
           <p className="text-sm text-[#777770]">
             Control Tower / Activity
           </p>
 
-          <div className="relative w-full max-w-[340px]">
+          <div className="relative w-full lg:max-w-[340px]">
             <Search
               size={17}
               className="absolute left-4 top-1/2 -translate-y-1/2 text-[#777770]"
@@ -78,13 +78,13 @@ export default function ActivityPage() {
         </header>
 
         {/* Hero */}
-        <section className="mt-20">
+        <section className="mt-12 lg:mt-20">
           <p className="text-sm text-[#777770]">
             Unified event stream
           </p>
 
-          <div className="mt-3 flex items-end justify-between">
-            <h1 className="text-[76px] font-medium leading-[0.88] tracking-[-0.075em] xl:text-[96px]">
+          <div className="mt-3 flex flex-wrap items-end justify-between gap-6">
+            <h1 className="text-[52px] font-medium leading-[0.88] tracking-[-0.075em] sm:text-[68px] lg:text-[76px] xl:text-[96px]">
               Everything
               <br />
               that happened.
@@ -121,7 +121,7 @@ export default function ActivityPage() {
             </p>
           </article>
 
-          <article className="col-span-6 min-h-[240px] rounded-[34px] bg-[#dcd5f7] p-8 md:col-span-3">
+          <article className="col-span-12 min-h-[240px] rounded-[34px] bg-[#dcd5f7] p-8 sm:col-span-6 lg:col-span-3">
             <Mail size={20} />
 
             <p className="mt-12 text-[48px] font-medium tracking-[-0.06em]">
@@ -133,7 +133,7 @@ export default function ActivityPage() {
             </p>
           </article>
 
-          <article className="col-span-6 min-h-[240px] rounded-[34px] bg-[#d8f2a6] p-8 md:col-span-4">
+          <article className="col-span-12 min-h-[240px] rounded-[34px] bg-[#d8f2a6] p-8 sm:col-span-6 lg:col-span-4">
             <PackageCheck size={20} />
 
             <p className="mt-12 text-[48px] font-medium tracking-[-0.06em]">
@@ -148,13 +148,13 @@ export default function ActivityPage() {
 
         {/* Activity timeline */}
         <section className="mt-20 pb-20">
-          <div className="flex items-end justify-between gap-6">
+          <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <p className="text-sm text-[#777770]">
                 Timeline
               </p>
 
-              <h2 className="mt-2 text-[42px] font-medium tracking-[-0.055em]">
+              <h2 className="mt-2 text-[32px] font-medium tracking-[-0.055em] lg:text-[42px]">
                 Recent activity
               </h2>
 
@@ -169,7 +169,7 @@ export default function ActivityPage() {
                   key={item}
                   onClick={() => setFilter(item)}
                   className={[
-                    "rounded-full px-4 py-2 text-sm transition",
+                    "min-h-11 rounded-full px-4 py-2 text-sm transition lg:min-h-0",
                     filter === item
                       ? "bg-[#171717] text-white"
                       : "border border-[#deded7] text-[#777770] hover:bg-white",
@@ -181,7 +181,7 @@ export default function ActivityPage() {
             </div>
           </div>
 
-          <div className="mt-7 rounded-[34px] border border-[#deded7] bg-white p-8">
+          <div className="mt-7 rounded-[34px] border border-[#deded7] bg-white p-5 lg:p-8">
             {filteredActivity.length > 0 ? (
               filteredActivity.map((item, index) => {
                 const isEmail =
@@ -190,7 +190,7 @@ export default function ActivityPage() {
                 return (
                   <div
                     key={item.id}
-                    className="relative flex gap-6 pb-9 last:pb-0"
+                    className="relative flex gap-4 pb-9 last:pb-0 lg:gap-6"
                   >
                     {index !==
                       filteredActivity.length - 1 && (
@@ -212,7 +212,7 @@ export default function ActivityPage() {
                       )}
                     </div>
 
-                    <div className="flex flex-1 items-start justify-between gap-8 pt-1">
+                    <div className="flex min-w-0 flex-1 flex-wrap items-start justify-between gap-3 pt-1 lg:gap-8">
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2">
                           <p className="text-sm font-medium">

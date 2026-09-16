@@ -50,7 +50,7 @@ export default async function OrderPage({
 
   return (
     <AppShell>
-      <div className="px-10 py-8 lg:px-14">
+      <div className="px-5 py-6 sm:px-8 lg:px-14 lg:py-8">
         {/* Header */}
         <header className="flex items-center justify-between">
           <Link
@@ -72,9 +72,9 @@ export default async function OrderPage({
             Order details
           </p>
 
-          <div className="mt-3 flex items-end justify-between gap-8">
+          <div className="mt-3 flex flex-wrap items-end justify-between gap-8">
             <div>
-              <h1 className="text-[70px] font-medium leading-[0.9] tracking-[-0.07em] xl:text-[90px]">
+              <h1 className="text-[48px] font-medium leading-[0.9] tracking-[-0.07em] sm:text-[64px] lg:text-[70px] xl:text-[90px]">
                 {order.id}
               </h1>
 
@@ -87,7 +87,7 @@ export default async function OrderPage({
               </Link>
             </div>
 
-            <div className="text-right">
+            <div className="text-left lg:text-right">
               <p className="text-sm text-[#777770]">
                 Current status
               </p>
@@ -112,7 +112,7 @@ export default async function OrderPage({
 
         {/* Metrics */}
         <section className="mt-14 grid grid-cols-12 gap-5">
-          <article className="col-span-6 rounded-[30px] bg-[#f3e5bd] p-7 md:col-span-3">
+          <article className="col-span-12 rounded-[30px] bg-[#f3e5bd] p-7 sm:col-span-6 lg:col-span-3">
             <p className="text-sm">Sales</p>
 
             <p className="mt-10 text-[38px] font-medium tracking-[-0.055em]">
@@ -120,7 +120,7 @@ export default async function OrderPage({
             </p>
           </article>
 
-          <article className="col-span-6 rounded-[30px] bg-[#dcd5f7] p-7 md:col-span-3">
+          <article className="col-span-12 rounded-[30px] bg-[#dcd5f7] p-7 sm:col-span-6 lg:col-span-3">
             <p className="text-sm">Cost</p>
 
             <p className="mt-10 text-[38px] font-medium tracking-[-0.055em]">
@@ -128,7 +128,7 @@ export default async function OrderPage({
             </p>
           </article>
 
-          <article className="col-span-6 rounded-[30px] bg-[#d8f2a6] p-7 md:col-span-3">
+          <article className="col-span-12 rounded-[30px] bg-[#d8f2a6] p-7 sm:col-span-6 lg:col-span-3">
             <p className="text-sm">Gross profit</p>
 
             <p className="mt-10 text-[38px] font-medium tracking-[-0.055em]">
@@ -136,7 +136,7 @@ export default async function OrderPage({
             </p>
           </article>
 
-          <article className="col-span-6 rounded-[30px] bg-[#d7e9ea] p-7 md:col-span-3">
+          <article className="col-span-12 rounded-[30px] bg-[#d7e9ea] p-7 sm:col-span-6 lg:col-span-3">
             <p className="text-sm">Channel</p>
 
             <p className="mt-10 text-[38px] font-medium tracking-[-0.055em]">
@@ -242,7 +242,7 @@ export default async function OrderPage({
                   </div>
                 </div>
 
-                <div className="mt-10 grid grid-cols-2 gap-4">
+                <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="rounded-[22px] bg-[#f5f5f0] p-5">
                     <p className="text-xs text-[#777770]">
                       Total sales
@@ -290,7 +290,7 @@ export default async function OrderPage({
             <div className="mt-8 space-y-3">
               {linkedEmails.length > 0 ? linkedEmails.map((email) => (
                 <Link key={email.id} href={`/inbox/${email.id}`} className="block rounded-[22px] bg-white/55 p-5 transition hover:bg-white/75">
-                  <div className="flex items-start justify-between gap-5">
+                  <div className="flex flex-wrap items-start justify-between gap-5">
                     <div className="flex gap-3">
                       <Mail size={17} />
                       <div>

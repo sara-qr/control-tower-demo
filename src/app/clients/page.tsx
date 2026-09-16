@@ -70,14 +70,14 @@ export default function ClientsPage() {
 
   return (
     <AppShell>
-      <div className="px-10 py-8 lg:px-14">
+      <div className="px-5 py-6 sm:px-8 lg:px-14 lg:py-8">
         {/* Header */}
-        <header className="flex items-center justify-between gap-6">
+        <header className="flex flex-wrap items-center justify-between gap-4 lg:gap-6">
           <p className="text-sm text-[#777770]">
             CRM / Clients
           </p>
 
-          <div className="relative w-full max-w-[320px]">
+          <div className="relative w-full lg:max-w-[320px]">
             <Search
               size={17}
               className="absolute left-4 top-1/2 -translate-y-1/2 text-[#777770]"
@@ -104,13 +104,13 @@ export default function ClientsPage() {
         </header>
 
         {/* Hero */}
-        <section className="mt-20">
+        <section className="mt-12 lg:mt-20">
           <p className="text-sm text-[#777770]">
             Customer intelligence
           </p>
 
-          <div className="mt-3 flex items-end justify-between">
-            <h1 className="text-[76px] font-medium leading-[0.88] tracking-[-0.075em] xl:text-[96px]">
+          <div className="mt-3 flex flex-wrap items-end justify-between gap-6">
+            <h1 className="text-[52px] font-medium leading-[0.88] tracking-[-0.075em] sm:text-[68px] lg:text-[76px] xl:text-[96px]">
               Your
               <br />
               clients.
@@ -159,7 +159,7 @@ export default function ClientsPage() {
             </div>
           </Link>
 
-          <article className="col-span-6 min-h-[250px] rounded-[34px] bg-[#f3e5bd] p-8 md:col-span-3">
+          <article className="col-span-12 min-h-[250px] rounded-[34px] bg-[#f3e5bd] p-8 sm:col-span-6 lg:col-span-3">
             <p className="text-sm">
               Sales
             </p>
@@ -173,7 +173,7 @@ export default function ClientsPage() {
             </p>
           </article>
 
-          <article className="col-span-6 min-h-[250px] rounded-[34px] bg-[#d8f2a6] p-8 md:col-span-4">
+          <article className="col-span-12 min-h-[250px] rounded-[34px] bg-[#d8f2a6] p-8 sm:col-span-6 lg:col-span-4">
             <p className="text-sm">
               Average margin
             </p>
@@ -190,13 +190,13 @@ export default function ClientsPage() {
 
         {/* CRM report */}
         <section className="mt-20 pb-20">
-          <div className="flex items-end justify-between gap-6">
+          <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <p className="text-sm text-[#777770]">
                 CRM report
               </p>
 
-              <h2 className="mt-2 text-[42px] font-medium tracking-[-0.055em]">
+              <h2 className="mt-2 text-[32px] font-medium tracking-[-0.055em] lg:text-[42px]">
                 All clients
               </h2>
 
@@ -213,7 +213,7 @@ export default function ClientsPage() {
                     setStatusFilter(filter)
                   }
                   className={[
-                    "rounded-full px-4 py-2 text-sm transition",
+                    "min-h-11 rounded-full px-4 py-2 text-sm transition lg:min-h-0",
                     statusFilter === filter
                       ? "bg-[#171717] text-white"
                       : "border border-[#deded7] text-[#777770] hover:bg-white",
@@ -226,7 +226,7 @@ export default function ClientsPage() {
           </div>
 
           <div className="mt-7 overflow-hidden rounded-[30px] border border-[#deded7] bg-white">
-            <div className="grid grid-cols-[1.7fr_.6fr_.9fr_.9fr_.7fr_1fr_.8fr_40px] gap-4 border-b border-[#e8e8e2] px-7 py-4 text-xs text-[#888882]">
+            <div className="hidden grid-cols-[1.7fr_.6fr_.9fr_.9fr_.7fr_1fr_.8fr_40px] gap-4 border-b border-[#e8e8e2] px-7 py-4 text-xs text-[#888882] lg:grid">
               <span>Client</span>
               <span>Orders</span>
               <span>Sales</span>
@@ -243,14 +243,14 @@ export default function ClientsPage() {
                   key={client.id}
                   href={`/clients/${client.id}`}
                   className={[
-                    "group grid w-full grid-cols-[1.7fr_.6fr_.9fr_.9fr_.7fr_1fr_.8fr_40px] items-center gap-4 px-7 py-5 transition hover:bg-[#fafaf7]",
+                    "group grid w-full grid-cols-2 items-center gap-4 px-5 py-5 transition hover:bg-[#fafaf7] sm:grid-cols-3 lg:grid-cols-[1.7fr_.6fr_.9fr_.9fr_.7fr_1fr_.8fr_40px] lg:px-7",
                     index !==
                     filteredClients.length - 1
                       ? "border-b border-[#e8e8e2]"
                       : "",
                   ].join(" ")}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="col-span-2 flex min-w-0 items-center gap-3 sm:col-span-3 lg:col-span-1">
                     <span
                       className="flex h-10 w-10 items-center justify-center rounded-full text-sm font-medium"
                       style={{
@@ -273,27 +273,29 @@ export default function ClientsPage() {
                   </div>
 
                   <span className="text-sm">
-                    {client.orders}
+                    <span className="block text-xs text-[#999992] lg:hidden">Orders</span>{client.orders}
                   </span>
 
                   <span className="text-sm font-medium">
+                    <span className="block text-xs font-normal text-[#999992] lg:hidden">Sales</span>
                     {formatCurrency(
                       client.sales
                     )}
                   </span>
 
                   <span className="text-sm text-[#777770]">
+                    <span className="block text-xs text-[#999992] lg:hidden">Cost</span>
                     {formatCurrency(
                       client.cost
                     )}
                   </span>
 
                   <span className="text-sm">
-                    {client.margin}%
+                    <span className="block text-xs text-[#999992] lg:hidden">Margin</span>{client.margin}%
                   </span>
 
                   <span className="text-sm text-[#777770]">
-                    {client.lastPurchase}
+                    <span className="block text-xs text-[#999992] lg:hidden">Last purchase</span>{client.lastPurchase}
                   </span>
 
                   <span>
@@ -313,7 +315,7 @@ export default function ClientsPage() {
                     </span>
                   </span>
 
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#deded7] transition group-hover:bg-[#171717] group-hover:text-white">
+                  <span className="hidden h-9 w-9 items-center justify-center rounded-full border border-[#deded7] transition group-hover:bg-[#171717] group-hover:text-white lg:flex">
                     <ArrowUpRight size={15} />
                   </span>
                 </Link>

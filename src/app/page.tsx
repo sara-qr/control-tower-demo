@@ -70,9 +70,9 @@ export default function Home() {
 
   return (
     <AppShell>
-      <div className="px-10 py-8 lg:px-14">
+      <div className="px-5 py-6 sm:px-8 lg:px-14 lg:py-8">
         {/* Header */}
-        <header className="flex items-center justify-between">
+        <header className="flex flex-wrap items-center justify-between gap-4">
           <div className="text-sm text-[#777770]">
             Wednesday, 16 September
           </div>
@@ -105,12 +105,12 @@ export default function Home() {
         </header>
 
         {/* Hero */}
-        <section className="mt-20">
+        <section className="mt-12 lg:mt-20">
           <p className="text-sm text-[#777770]">
             Good afternoon.
           </p>
 
-          <h1 className="mt-3 max-w-[850px] text-[76px] font-medium leading-[0.88] tracking-[-0.075em] xl:text-[96px]">
+          <h1 className="mt-3 max-w-[850px] text-[52px] font-medium leading-[0.88] tracking-[-0.075em] sm:text-[68px] lg:text-[76px] xl:text-[96px]">
             Everything
             <br />
             under control.
@@ -130,7 +130,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <p className="mt-16 text-[64px] font-medium tracking-[-0.07em]">
+            <p className="mt-16 text-[52px] font-medium tracking-[-0.07em] sm:text-[64px]">
               {new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(totalSales)}
             </p>
 
@@ -145,7 +145,7 @@ export default function Home() {
             </div>
           </article>
 
-          <article className="col-span-6 min-h-[290px] rounded-[34px] bg-[#dcd5f7] p-8 md:col-span-3">
+          <article className="col-span-12 min-h-[290px] rounded-[34px] bg-[#dcd5f7] p-8 sm:col-span-6 lg:col-span-3">
             <p className="text-sm">
               Inbox
             </p>
@@ -159,7 +159,7 @@ export default function Home() {
             </p>
           </article>
 
-          <article className="col-span-6 min-h-[290px] rounded-[34px] bg-[#d8f2a6] p-8 md:col-span-3">
+          <article className="col-span-12 min-h-[290px] rounded-[34px] bg-[#d8f2a6] p-8 sm:col-span-6 lg:col-span-3">
             <p className="text-sm">
               Orders
             </p>
@@ -176,13 +176,13 @@ export default function Home() {
 
         {/* Attention */}
         <section className="mt-20">
-          <div className="flex items-end justify-between">
+          <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="text-sm text-[#777770]">
                 Priority
               </p>
 
-              <h2 className="mt-2 text-[42px] font-medium tracking-[-0.055em]">
+              <h2 className="mt-2 text-[32px] font-medium tracking-[-0.055em] lg:text-[42px]">
                 Needs your attention
               </h2>
             </div>
@@ -199,7 +199,7 @@ export default function Home() {
                 key={item.id}
                 href={item.type === "Email" ? `/inbox/${item.id}` : `/orders/${item.id}`}
                 className={[
-                  "group flex w-full items-center gap-6 px-7 py-6 text-left transition hover:bg-[#fafaf7]",
+                  "group flex w-full items-start gap-4 px-5 py-6 text-left transition hover:bg-[#fafaf7] lg:items-center lg:gap-6 lg:px-7",
                   index !== attentionItems.length - 1
                     ? "border-b border-[#e8e8e2]"
                     : "",
@@ -216,7 +216,7 @@ export default function Home() {
                     .join(" ")}
                 />
 
-                <div className="grid flex-1 grid-cols-[120px_1fr_1fr] items-center gap-5">
+                <div className="grid min-w-0 flex-1 grid-cols-1 items-center gap-3 lg:grid-cols-[120px_1fr_1fr] lg:gap-5">
                   <div>
                     <p className="text-xs text-[#888882]">
                       {item.type}
@@ -237,12 +237,12 @@ export default function Home() {
                     </p>
                   </div>
 
-                  <p className="text-right text-sm text-[#999992]">
+                  <p className="text-sm text-[#999992] lg:text-right">
                     {item.time}
                   </p>
                 </div>
 
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#deded7] transition group-hover:bg-[#171717] group-hover:text-white">
+                <div className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#deded7] transition group-hover:bg-[#171717] group-hover:text-white lg:flex">
                   <ArrowUpRight size={16} />
                 </div>
               </Link>
@@ -254,13 +254,13 @@ export default function Home() {
         <section className="mt-20 pb-20">
           <div className="grid grid-cols-12 gap-5">
             <div className="col-span-12 rounded-[34px] bg-white p-8 lg:col-span-8">
-              <div className="flex items-end justify-between">
+              <div className="flex flex-wrap items-end justify-between gap-4">
                 <div>
                   <p className="text-sm text-[#777770]">
                     Live feed
                   </p>
 
-                  <h2 className="mt-2 text-[42px] font-medium tracking-[-0.055em]">
+                  <h2 className="mt-2 text-[32px] font-medium tracking-[-0.055em] lg:text-[42px]">
                     Recent activity
                   </h2>
                 </div>
@@ -302,9 +302,9 @@ export default function Home() {
                           )}
                         </div>
 
-                        <div className="flex flex-1 items-start justify-between gap-6 pt-1">
+                        <div className="flex min-w-0 flex-1 flex-wrap items-start justify-between gap-3 pt-1 lg:gap-6">
                           <div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex flex-wrap items-center gap-2">
                               <span className="text-sm font-medium">
                                 {activity.title}
                               </span>

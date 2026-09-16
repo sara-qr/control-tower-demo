@@ -49,7 +49,7 @@ export default async function ClientPage({
 
   return (
     <AppShell>
-      <div className="px-10 py-8 lg:px-14">
+      <div className="px-5 py-6 sm:px-8 lg:px-14 lg:py-8">
         {/* Header */}
         <header className="flex items-center justify-between">
           <Link
@@ -67,7 +67,7 @@ export default async function ClientPage({
 
         {/* Client hero */}
         <section className="mt-16">
-          <div className="flex items-start justify-between gap-8">
+          <div className="flex flex-wrap items-start justify-between gap-8">
             <div>
               <div
                 className="flex h-16 w-16 items-center justify-center rounded-full text-lg font-medium"
@@ -82,17 +82,17 @@ export default async function ClientPage({
                 Client profile
               </p>
 
-              <h1 className="mt-3 max-w-[850px] text-[64px] font-medium leading-[0.9] tracking-[-0.07em] xl:text-[82px]">
+              <h1 className="mt-3 max-w-[850px] break-words text-[44px] font-medium leading-[0.9] tracking-[-0.07em] sm:text-[56px] lg:text-[64px] xl:text-[82px]">
                 {client.name}
               </h1>
             </div>
 
-            <div className="mt-auto pb-2 text-right">
+            <div className="mt-auto pb-2 text-left lg:text-right">
               <p className="text-sm text-[#777770]">
                 Current status
               </p>
 
-              <div className="mt-2 flex items-center justify-end gap-2">
+              <div className="mt-2 flex items-center gap-2 lg:justify-end">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#b8e978]" />
 
                 <span className="text-lg font-medium">
@@ -105,7 +105,7 @@ export default async function ClientPage({
 
         {/* KPI Cards */}
         <section className="mt-14 grid grid-cols-12 gap-5">
-          <article className="col-span-6 rounded-[30px] bg-[#f3e5bd] p-7 md:col-span-3">
+          <article className="col-span-12 rounded-[30px] bg-[#f3e5bd] p-7 sm:col-span-6 lg:col-span-3">
             <p className="text-sm">
               Sales
             </p>
@@ -119,7 +119,7 @@ export default async function ClientPage({
             </p>
           </article>
 
-          <article className="col-span-6 rounded-[30px] bg-[#dcd5f7] p-7 md:col-span-3">
+          <article className="col-span-12 rounded-[30px] bg-[#dcd5f7] p-7 sm:col-span-6 lg:col-span-3">
             <p className="text-sm">
               Cost
             </p>
@@ -133,7 +133,7 @@ export default async function ClientPage({
             </p>
           </article>
 
-          <article className="col-span-6 rounded-[30px] bg-[#d8f2a6] p-7 md:col-span-3">
+          <article className="col-span-12 rounded-[30px] bg-[#d8f2a6] p-7 sm:col-span-6 lg:col-span-3">
             <p className="text-sm">
               Margin
             </p>
@@ -147,7 +147,7 @@ export default async function ClientPage({
             </p>
           </article>
 
-          <article className="col-span-6 rounded-[30px] bg-[#d7e9ea] p-7 md:col-span-3">
+          <article className="col-span-12 rounded-[30px] bg-[#d7e9ea] p-7 sm:col-span-6 lg:col-span-3">
             <p className="text-sm">
               Orders
             </p>
@@ -201,7 +201,7 @@ export default async function ClientPage({
                     Email
                   </p>
 
-                  <p className="mt-1 text-sm">
+                  <p className="mt-1 break-all text-sm lg:break-normal">
                     {client.email}
                   </p>
                 </div>
@@ -254,14 +254,14 @@ export default async function ClientPage({
                       key={order.id}
                       href={`/orders/${order.id}`}
                       className={[
-                        "group grid grid-cols-[1.2fr_1fr_1fr_1fr_40px] items-center gap-5 py-5 transition hover:opacity-60",
+                        "group grid grid-cols-2 items-center gap-4 py-5 transition hover:opacity-60 lg:grid-cols-[1.2fr_1fr_1fr_1fr_40px] lg:gap-5",
                         index !==
                         recentOrders.length - 1
                           ? "border-b border-[#e8e8e2]"
                           : "",
                       ].join(" ")}
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="col-span-2 flex items-center gap-3 lg:col-span-1">
                         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f3e5bd]">
                           <Package size={16} />
                         </div>
@@ -272,10 +272,12 @@ export default async function ClientPage({
                       </div>
 
                       <span className="text-sm font-medium">
-                          {formatCurrency(order.amount)}
+                        <span className="block text-xs font-normal text-[#999992] lg:hidden">Sales</span>
+                        {formatCurrency(order.amount)}
                       </span>
 
                       <span className="text-sm text-[#777770]">
+                        <span className="block text-xs text-[#999992] lg:hidden">Date</span>
                         {order.date}
                       </span>
 
@@ -283,7 +285,7 @@ export default async function ClientPage({
                         {order.status}
                       </span>
 
-                      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#deded7] transition group-hover:bg-[#171717] group-hover:text-white">
+                      <span className="hidden h-9 w-9 items-center justify-center rounded-full border border-[#deded7] transition group-hover:bg-[#171717] group-hover:text-white lg:flex">
                         <ArrowUpRight size={15} />
                       </span>
                     </Link>
@@ -322,7 +324,7 @@ export default async function ClientPage({
                     <div
                       key={email.id}
                       className={[
-                        "flex items-center justify-between gap-8 py-5",
+                        "flex flex-wrap items-center justify-between gap-4 py-5 lg:gap-8",
                         index !==
                         recentEmails.length - 1
                           ? "border-b border-black/10"

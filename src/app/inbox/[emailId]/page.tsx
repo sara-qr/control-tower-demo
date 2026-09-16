@@ -58,7 +58,7 @@ export default async function EmailPage({
   return (
     <AppShell>
       <EmailInteractionProvider initialStatus={email.status}>
-      <div className="px-10 py-8 lg:px-14">
+      <div className="px-5 py-6 sm:px-8 lg:px-14 lg:py-8">
         {/* Header */}
         <header className="flex items-center justify-between">
           <Link
@@ -80,13 +80,13 @@ export default async function EmailPage({
 
           <div className="mt-3 grid grid-cols-12 gap-8">
             <div className="col-span-12 lg:col-span-9">
-              <h1 className="max-w-[950px] text-[56px] font-medium leading-[0.94] tracking-[-0.065em] xl:text-[72px]">
+              <h1 className="max-w-[950px] break-words text-[40px] font-medium leading-[0.94] tracking-[-0.065em] sm:text-[50px] lg:text-[56px] xl:text-[72px]">
                 {email.subject}
               </h1>
             </div>
 
             <div className="col-span-12 flex items-end lg:col-span-3 lg:justify-end">
-              <div className="text-right">
+              <div className="text-left lg:text-right">
                 <p className="text-sm text-[#777770]">
                   Received
                 </p>
@@ -235,7 +235,7 @@ export default async function EmailPage({
             </h2>
 
             {client && (
-              <div className="mt-10 grid grid-cols-2 gap-4">
+              <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="rounded-[22px] bg-white/55 p-5">
                   <p className="text-xs text-black/50">
                     Client sales

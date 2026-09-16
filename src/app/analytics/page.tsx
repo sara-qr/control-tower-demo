@@ -56,12 +56,12 @@ export default function AnalyticsPage() {
 
   return (
     <AppShell>
-      <div className="px-10 py-8 lg:px-14">
+      <div className="px-5 py-6 sm:px-8 lg:px-14 lg:py-8">
         <header className="text-sm text-[#777770]">Control Tower / Analytics</header>
 
-        <section className="mt-20 flex flex-wrap items-end justify-between gap-8">
+        <section className="mt-12 flex flex-wrap items-end justify-between gap-8 lg:mt-20">
           <div>
-            <h1 className="text-[76px] font-medium leading-[0.88] tracking-[-0.075em] xl:text-[96px]">
+            <h1 className="text-[52px] font-medium leading-[0.88] tracking-[-0.075em] sm:text-[68px] lg:text-[76px] xl:text-[96px]">
               Business
               <br />
               insights.
@@ -72,7 +72,7 @@ export default function AnalyticsPage() {
           </div>
 
           <div className="pb-1">
-            <p className="mb-3 text-right text-xs text-[#777770]">Viewing: {period}</p>
+            <p className="mb-3 text-xs text-[#777770] lg:text-right">Viewing: {period}</p>
             <div className="flex flex-wrap gap-2" aria-label="Analytics period">
               {periods.map((item) => (
                 <button
@@ -81,7 +81,7 @@ export default function AnalyticsPage() {
                   aria-pressed={period === item}
                   onClick={() => setPeriod(item)}
                   className={[
-                    "rounded-full px-4 py-2 text-sm transition",
+                    "min-h-11 rounded-full px-4 py-2 text-sm transition lg:min-h-0",
                     period === item
                       ? "bg-[#171717] text-white"
                       : "border border-[#deded7] text-[#777770] hover:bg-white",
@@ -101,7 +101,7 @@ export default function AnalyticsPage() {
             { label: "Gross profit", value: currency.format(grossProfit), color: "bg-[#d8f2a6]" },
             { label: "Average margin", value: `${percent.format(averageMargin)}%`, color: "bg-[#f3cfe0]" },
           ].map((metric) => (
-            <article key={metric.label} className={`col-span-6 min-h-[220px] rounded-[34px] p-8 lg:col-span-3 ${metric.color}`}>
+            <article key={metric.label} className={`col-span-12 min-h-[220px] rounded-[34px] p-8 sm:col-span-6 lg:col-span-3 ${metric.color}`}>
               <p className="text-sm">{metric.label}</p>
               <p className="mt-16 text-[38px] font-medium tracking-[-0.06em] xl:text-[42px]">
                 {metric.value}
@@ -112,13 +112,13 @@ export default function AnalyticsPage() {
         </section>
 
         <section className="mt-5 grid grid-cols-12 gap-5">
-          <article className="col-span-12 rounded-[34px] bg-white p-8 lg:col-span-8">
+          <article className="col-span-12 min-w-0 rounded-[34px] bg-white p-8 lg:col-span-8">
             <p className="text-sm text-[#777770]">Revenue trend</p>
-            <h2 className="mt-2 text-[42px] font-medium tracking-[-0.055em]">Sales over time</h2>
+            <h2 className="mt-2 text-[32px] font-medium tracking-[-0.055em] lg:text-[42px]">Sales over time</h2>
             <p className="mt-2 text-sm text-[#777770]">Illustrative monthly sales · Apr–Sep</p>
 
-            <div className="mt-10 w-full overflow-hidden" role="img" aria-label="Illustrative sales rise from 42,500 euros in April to 80,310 euros in September">
-              <svg viewBox="0 0 720 235" className="h-auto w-full" aria-hidden="true">
+            <div className="mt-10 w-full overflow-x-auto" role="img" aria-label="Illustrative sales rise from 42,500 euros in April to 80,310 euros in September">
+              <svg viewBox="0 0 720 235" className="h-auto w-full min-w-[600px] lg:min-w-0" aria-hidden="true">
                 {[40, 115, 190].map((y) => (
                   <line key={y} x1="30" x2="690" y1={y} y2={y} stroke="#e8e8e2" strokeWidth="1" />
                 ))}
@@ -170,11 +170,11 @@ export default function AnalyticsPage() {
         <section className="mt-5 grid grid-cols-12 gap-5">
           <article className="col-span-12 rounded-[34px] bg-[#dcd5f7] p-8 lg:col-span-6">
             <p className="text-sm text-black/50">CRM ranking</p>
-            <h2 className="mt-2 text-[42px] font-medium tracking-[-0.055em]">Top clients</h2>
+            <h2 className="mt-2 text-[32px] font-medium tracking-[-0.055em] lg:text-[42px]">Top clients</h2>
             <div className="mt-10 space-y-7">
               {rankedClients.map((client, index) => (
                 <div key={client.id}>
-                  <div className="flex items-center justify-between gap-4 text-sm">
+                  <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
                     <span className="font-medium">{String(index + 1).padStart(2, "0")} · {client.name}</span>
                     <span className="shrink-0 font-medium">{currency.format(client.sales)}</span>
                   </div>
@@ -189,7 +189,7 @@ export default function AnalyticsPage() {
 
           <article className="col-span-12 rounded-[34px] bg-white p-8 lg:col-span-6">
             <p className="text-sm text-[#777770]">Client economics</p>
-            <h2 className="mt-2 text-[42px] font-medium tracking-[-0.055em]">Sales vs cost</h2>
+            <h2 className="mt-2 text-[32px] font-medium tracking-[-0.055em] lg:text-[42px]">Sales vs cost</h2>
             <div className="mt-4 flex gap-5 text-xs text-[#777770]">
               <span className="flex items-center gap-2"><span className="h-3 w-3 rounded-full bg-[#d8f2a6]" />Sales</span>
               <span className="flex items-center gap-2"><span className="h-3 w-3 rounded-full bg-[#dcd5f7]" />Cost</span>
@@ -197,7 +197,7 @@ export default function AnalyticsPage() {
             <div className="mt-10 space-y-7">
               {rankedClients.map((client) => (
                 <div key={client.id}>
-                  <div className="mb-3 flex justify-between gap-4 text-sm">
+                  <div className="mb-3 flex flex-wrap justify-between gap-2 text-sm">
                     <span className="font-medium">{client.name}</span>
                     <span className="shrink-0 text-[#777770]">{currency.format(client.sales)} / {currency.format(client.cost)}</span>
                   </div>
@@ -214,8 +214,8 @@ export default function AnalyticsPage() {
         <section className="mt-5 pb-20">
           <article className="rounded-[34px] bg-[#f3e5bd] p-8">
             <p className="text-sm text-black/50">Operations snapshot</p>
-            <h2 className="mt-2 text-[42px] font-medium tracking-[-0.055em]">Operational health</h2>
-            <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            <h2 className="mt-2 text-[32px] font-medium tracking-[-0.055em] lg:text-[42px]">Operational health</h2>
+            <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 { label: "Delayed orders", value: delayedOrders },
                 { label: "Pending orders", value: pendingOrders },

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { emails } from "@/data/emails";
 
 import {
@@ -9,8 +10,10 @@ import {
   ChartNoAxesCombined,
   Inbox,
   LayoutGrid,
+  Menu,
   ShoppingBag,
   Users,
+  X,
 } from "lucide-react";
 
 const navigation = [
@@ -49,9 +52,43 @@ const navigation = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <aside className="sticky top-0 flex h-screen w-[190px] shrink-0 flex-col border-r border-[#deded7] bg-[#f5f5f0] px-6 py-8">
+    <>
+    <header className="flex h-16 items-center justify-between border-b border-[#deded7] bg-[#f5f5f0] px-5 lg:hidden">
+      <Link href="/" className="text-lg font-medium tracking-[-0.05em]">Control Tower</Link>
+      <button type="button" aria-label="Open navigation" aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen(true)} className="flex h-11 w-11 items-center justify-center rounded-full border border-[#deded7]">
+        <Menu size={20} />
+      </button>
+    </header>
+
+    {menuOpen && (
+      <div className="fixed inset-0 z-50 lg:hidden">
+        <button type="button" aria-label="Close navigation" onClick={() => setMenuOpen(false)} className="absolute inset-0 w-full bg-black/30" />
+        <div id="mobile-navigation" className="relative flex h-full w-[min(320px,85vw)] flex-col bg-[#f5f5f0] px-6 py-6 shadow-xl">
+          <div className="flex items-center justify-between">
+            <Link href="/" onClick={() => setMenuOpen(false)} className="text-[22px] font-medium tracking-[-0.05em]">Control Tower</Link>
+            <button type="button" aria-label="Close navigation" onClick={() => setMenuOpen(false)} className="flex h-11 w-11 items-center justify-center rounded-full border border-[#deded7]"><X size={20} /></button>
+          </div>
+          <nav className="mt-10 space-y-1" aria-label="Mobile navigation">
+            {navigation.map((item) => {
+              const Icon = item.icon;
+              const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+              return (
+                <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)} aria-current={active ? "page" : undefined} className={["flex min-h-12 w-full items-center rounded-full px-4 py-3 text-sm transition", active ? "bg-[#171717] text-white" : "text-[#686864] hover:bg-white hover:text-[#171717]"].join(" ")}>
+                  <span className="flex flex-1 items-center gap-3"><Icon size={16} />{item.label}</span>
+                  {item.badge && <span className={["rounded-full px-2 py-0.5 text-xs", active ? "bg-white text-black" : "bg-[#f3cfe0] text-black"].join(" ")}>{item.badge}</span>}
+                </Link>
+              );
+            })}
+          </nav>
+          <div className="mt-auto flex items-center gap-2 text-xs text-[#777770]"><span className="h-2 w-2 rounded-full bg-[#b9e879]" />Systems connected</div>
+        </div>
+      </div>
+    )}
+
+    <aside className="sticky top-0 hidden h-screen w-[190px] shrink-0 flex-col border-r border-[#deded7] bg-[#f5f5f0] px-6 py-8 lg:flex">
       <Link href="/">
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em]">
           Control
@@ -114,5 +151,6 @@ export function Sidebar() {
         </div>
       </div>
     </aside>
+    </>
   );
 }

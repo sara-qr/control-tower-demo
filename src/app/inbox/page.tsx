@@ -54,14 +54,14 @@ export default function InboxPage() {
 
   return (
     <AppShell>
-      <div className="px-10 py-8 lg:px-14">
+      <div className="px-5 py-6 sm:px-8 lg:px-14 lg:py-8">
         {/* Header */}
-        <header className="flex items-center justify-between gap-6">
+        <header className="flex flex-wrap items-center justify-between gap-4 lg:gap-6">
           <p className="text-sm text-[#777770]">
             Communication / Inbox
           </p>
 
-          <div className="relative w-full max-w-[340px]">
+          <div className="relative w-full lg:max-w-[340px]">
             <Search
               size={17}
               className="absolute left-4 top-1/2 -translate-y-1/2 text-[#777770]"
@@ -79,13 +79,13 @@ export default function InboxPage() {
         </header>
 
         {/* Hero */}
-        <section className="mt-20">
+        <section className="mt-12 lg:mt-20">
           <p className="text-sm text-[#777770]">
             Unified communication
           </p>
 
-          <div className="mt-3 flex items-end justify-between">
-            <h1 className="text-[76px] font-medium leading-[0.88] tracking-[-0.075em] xl:text-[96px]">
+          <div className="mt-3 flex flex-wrap items-end justify-between gap-6">
+            <h1 className="text-[52px] font-medium leading-[0.88] tracking-[-0.075em] sm:text-[68px] lg:text-[76px] xl:text-[96px]">
               Your
               <br />
               inbox.
@@ -117,7 +117,7 @@ export default function InboxPage() {
             </p>
           </article>
 
-          <article className="col-span-6 min-h-[250px] rounded-[34px] bg-[#f3cfe0] p-8 md:col-span-3">
+          <article className="col-span-12 min-h-[250px] rounded-[34px] bg-[#f3cfe0] p-8 sm:col-span-6 lg:col-span-3">
             <AlertCircle size={21} />
 
             <p className="mt-12 text-[48px] font-medium tracking-[-0.06em]">
@@ -129,7 +129,7 @@ export default function InboxPage() {
             </p>
           </article>
 
-          <article className="col-span-6 min-h-[250px] rounded-[34px] bg-[#d8f2a6] p-8 md:col-span-4">
+          <article className="col-span-12 min-h-[250px] rounded-[34px] bg-[#d8f2a6] p-8 sm:col-span-6 lg:col-span-4">
             <p className="text-sm">
               Connected records
             </p>
@@ -146,13 +146,13 @@ export default function InboxPage() {
 
         {/* Inbox */}
         <section className="mt-20 pb-20">
-          <div className="flex items-end justify-between gap-6">
+          <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <p className="text-sm text-[#777770]">
                 Unified inbox
               </p>
 
-              <h2 className="mt-2 text-[42px] font-medium tracking-[-0.055em]">
+              <h2 className="mt-2 text-[32px] font-medium tracking-[-0.055em] lg:text-[42px]">
                 Recent emails
               </h2>
 
@@ -167,7 +167,7 @@ export default function InboxPage() {
                   key={item}
                   onClick={() => setFilter(item)}
                   className={[
-                    "rounded-full px-4 py-2 text-sm transition",
+                    "min-h-11 rounded-full px-4 py-2 text-sm transition lg:min-h-0",
                     filter === item
                       ? "bg-[#171717] text-white"
                       : "border border-[#deded7] text-[#777770] hover:bg-white",
@@ -184,7 +184,7 @@ export default function InboxPage() {
               <div
                 key={email.id}
                 className={[
-                  "grid grid-cols-[48px_1.6fr_.8fr_.8fr_220px] items-center gap-5 px-7 py-6",
+                  "grid grid-cols-[44px_minmax(0,1fr)] items-center gap-4 px-5 py-6 lg:grid-cols-[48px_1.6fr_.8fr_.8fr_220px] lg:gap-5 lg:px-7",
                   index !== filteredEmails.length - 1
                     ? "border-b border-[#e8e8e2]"
                     : "",
@@ -203,8 +203,8 @@ export default function InboxPage() {
                   <Mail size={17} />
                 </div>
 
-                <div>
-                  <div className="flex items-center gap-2">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
                     <Link
                       href={`/inbox/${email.id}`}
                       className="text-sm font-medium transition hover:opacity-55"
@@ -219,27 +219,27 @@ export default function InboxPage() {
                     )}
                   </div>
 
-                  <p className="mt-1 line-clamp-1 text-sm text-[#777770]">
+                  <p className="mt-1 line-clamp-2 text-sm text-[#777770] lg:line-clamp-1">
                     {email.preview}
                   </p>
                 </div>
 
                 <Link
                   href={`/clients/${email.clientId}`}
-                  className="text-sm font-medium transition hover:opacity-55"
+                  className="col-start-2 text-sm font-medium transition hover:opacity-55 lg:col-start-auto"
                 >
                   {email.client}
                 </Link>
 
                 <Link
                   href={`/orders/${email.orderId}`}
-                  className="text-sm text-[#777770] transition hover:text-black"
+                  className="col-start-2 text-sm text-[#777770] transition hover:text-black lg:col-start-auto"
                 >
                   {email.orderId}
                 </Link>
 
-                <div className="flex items-center justify-end gap-4">
-                  <div className="text-right">
+                <div className="col-start-2 flex items-center justify-between gap-4 lg:col-start-auto lg:justify-end">
+                  <div className="text-left lg:text-right">
                     <p className="text-xs text-[#999992]">
                       {email.time}
                     </p>
@@ -260,7 +260,7 @@ export default function InboxPage() {
 
                   <Link
                     href={`/inbox/${email.id}`}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-[#deded7] transition hover:bg-[#171717] hover:text-white"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-[#deded7] transition hover:bg-[#171717] hover:text-white lg:h-9 lg:w-9"
                   >
                     <ArrowUpRight size={15} />
                   </Link>
