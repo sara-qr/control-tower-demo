@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Control Tower",
-  description: "Email, CRM and operations in one connected workspace.",
+  title: "CRM Demo",
+  description: "Customer relationship management demo for clients, orders, communication and commercial activity.",
 };
 
 export default function RootLayout({

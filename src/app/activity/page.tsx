@@ -57,7 +57,7 @@ export default function ActivityPage() {
         {/* Header */}
         <header className="flex flex-wrap items-center justify-between gap-4 lg:gap-6">
           <p className="text-sm text-[#777770]">
-            Control Tower / Activity
+            CRM / Activity
           </p>
 
           <div className="relative w-full lg:max-w-[340px]">

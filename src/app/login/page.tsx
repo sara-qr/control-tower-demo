@@ -51,12 +51,12 @@ export default function LoginPage() {
 
           <div className="mt-16 lg:mt-0 lg:pb-12">
             <h1 className="max-w-[720px] text-[46px] font-medium leading-[0.94] tracking-[-0.07em] sm:text-[64px] lg:text-[68px] xl:text-[84px]">
-              Email, CRM and operations.
+              Customer relationships,
               <br />
-              One view.
+              in one place.
             </h1>
             <p className="mt-8 max-w-[500px] text-sm leading-6 text-[#777770] sm:text-base">
-              A connected workspace for customer communication, orders and operational activity.
+              Manage clients, orders, conversations and commercial activity from one connected workspace.
             </p>
           </div>
         </section>
@@ -65,7 +65,7 @@ export default function LoginPage() {
           <div className="w-full max-w-[480px] rounded-[34px] bg-white p-7 sm:p-10 lg:p-12">
             <span className="inline-flex rounded-full bg-[#d8f2a6] px-4 py-2 text-xs font-medium">Demo access</span>
             <h2 className="mt-8 text-[42px] font-medium leading-none tracking-[-0.06em] sm:text-[50px]">Welcome in.</h2>
-            <p className="mt-4 text-sm leading-6 text-[#777770]">Sign in to explore Control Tower.</p>
+            <p className="mt-4 text-sm leading-6 text-[#777770]">Sign in to explore CRM.</p>
 
             <form onSubmit={signIn} className="mt-10 space-y-6">
               <div>

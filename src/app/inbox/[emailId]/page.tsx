@@ -126,7 +126,7 @@ export default async function EmailPage({
               <p className="mt-8 text-sm leading-6 text-[#777770]">
                 Este mensaje está vinculado automáticamente
                 al cliente y al pedido correspondiente dentro
-                de Control Tower.
+                de CRM.
               </p>
             </div>
 

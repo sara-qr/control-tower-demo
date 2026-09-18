@@ -101,7 +101,7 @@ export function Sidebar() {
 
     <aside className="sticky top-0 hidden h-screen w-[190px] shrink-0 flex-col border-r border-[#deded7] bg-[#f5f5f0] px-6 py-8 lg:flex">
       <Link href="/">
-        <Brand />
+        <Brand descriptor />
       </Link>
 
       <nav className="mt-16 space-y-1">

@@ -57,7 +57,7 @@ export default function AnalyticsPage() {
   return (
     <AppShell>
       <div className="px-5 py-6 sm:px-8 lg:px-14 lg:py-8">
-        <header className="text-sm text-[#777770]">Control Tower / Analytics</header>
+        <header className="text-sm text-[#777770]">CRM / Analytics</header>
 
         <section className="mt-12 flex flex-wrap items-end justify-between gap-8 lg:mt-20">
           <div>
